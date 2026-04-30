@@ -1,0 +1,23 @@
+# .gitignore
+
+# Virtual environment — never push this
+venv/
+
+# Your secret API key — NEVER push this
+.env
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Django database (local only)
+db.sqlite3
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/

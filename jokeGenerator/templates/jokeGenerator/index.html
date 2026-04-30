@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JOKE OR QUOTE GENERATOR</title>
+</head>
+<body>
+    <h1>Hello joke</h1>
+    <form  method="POST">
+        {% csrf_token %}   
+        {{ form.as_p }} 
+        <!-- this renders all your form fields automatically with correct label and select -->
+         <button type="submit">Generate</button>
+     </form>
+        <hr>
+        {% if quote %}
+         <p>{{ quote }} </p>
+        {% endif %}
+
+    
+    
+</body>
+</html>
