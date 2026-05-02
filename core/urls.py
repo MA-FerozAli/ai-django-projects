@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path,include
 
 urlpatterns = [
+    path('grammer/',include('grammerToneFixer.urls')),
     path('summarizer/',include('summarizer.urls')),
     path('jokeGenerator/',include('jokeGenerator.urls')),
     path('admin/', admin.site.urls),

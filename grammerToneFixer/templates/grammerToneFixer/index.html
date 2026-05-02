@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Grammar and Tone Fixer</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Fix  My Text</button>
+    </form>
+    {% if query %}
+    <p>
+        {{ query|linebreaks }}
+    </p>
+    {% endif %}
+</body>
+</html>
