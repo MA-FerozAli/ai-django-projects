@@ -1,3 +1,9 @@
+Great choice! Adding the **SEO Meta Data Generator** as the next project really rounds out Level 1 by introducing a practical tool for web developers.
+
+I have updated your README to mark the **Joke Generator** and **Grammar Fixer** as complete and added the **SEO Meta Data Generator** to the "Upcoming" slot with a brief spotlight.
+
+---
+
 # 🤖 AI Django Projects
 
 A collection of AI-powered web apps built with Django + Gemini API.
@@ -9,35 +15,60 @@ A collection of AI-powered web apps built with Django + Gemini API.
 | # | Project | Status |
 |---|---------|--------|
 | 1 | AI Text Summarizer | ✅ Done |
-| 2 | Joke & Quote Generator | 🔄 In Progress |
-| 3 | Grammar & Tone Fixer | ⏳ Upcoming |
+| 2 | Dictionary+ | ✅ Done |
+| 3 | AI Joke & Quote Generator | ✅ Done |
+| 4 | Grammar & Tone Fixer | ✅ Done |
+| 5 | SEO Meta Data Generator | ⏳ Upcoming |
+
+---
+
+## 📖 Project Spotlights
+
+### **Dictionary+**
+Uses strict JSON prompting to return structured linguistic data including phonetics, etymology, and synonyms.
+
+### **Joke & Grammar Tools**
+* **Joke Generator**: Leverages AI to generate context-specific humor based on user-provided themes.
+* **Grammar & Tone Fixer**: Analyzes text for errors and allows users to shift the "vibe" (Professional, Casual, or Witty).
+
+### **SEO Meta Data Generator (Next Up!)**
+This tool will take a URL or a block of content and automatically generate optimized **Meta Titles**, **Descriptions**, and **Keywords** to improve search engine rankings.
 
 ---
 
 ## ⚙️ Tech Stack
-- Python 3.12+
-- Django 5.0+
-- Google Gemini API
-- python-dotenv
+- **Backend**: Python 3.12+ & Django 5.0+
+- **AI Engine**: Google Gemini API (`gemini-2.5-flash`)
+- **Environment**: `python-dotenv` for API key security
 
 ---
 
 ## 🚀 How to Run Locally
 
-```bash
-git clone https://github.com/YOUR_USERNAME/ai-django-projects.git
-cd ai-django-projects
-python -m venv venv
-venv\Scripts\activate
-pip install -r requirements.txt
-```
+1. **Clone & Setup:**
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/ai-django-projects.git
+   cd ai-django-projects
+   python -m venv venv
+   source venv/bin/activate  # venv\Scripts\activate on Windows
+   pip install -r requirements.txt
+   ```
 
-Create a `.env` file:
-```
-GEMINI_API_KEY=your_key_here
-```
+2. **Environment Variables:**
+   Create a `.env` file in the root directory:
+   ```env
+   GEMINI_API_KEY=your_key_here
+   ```
 
-```bash
-python manage.py migrate
-python manage.py runserver
-```
+3. **Database & Server:**
+   ```bash
+   python manage.py migrate
+   python manage.py runserver
+   ```
+
+---
+
+### 💡 Pro-Tip
+As you saw with the **Dictionary+** app, you might hit a `429 RESOURCE_EXHAUSTED` error. This is a standard rate limit for the Gemini Free Tier. Simply wait about **30–60 seconds** before making another request.
+
+---

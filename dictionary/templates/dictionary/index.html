@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dictionary+</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Lora:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --cream:   #f7f2e8;
+      --parchment: #ede6d6;
+      --ink:     #1a1208;
+      --brown:   #5c3d1e;
+      --gold:    #b8860b;
+      --gold-lt: #d4a843;
+      --muted:   #8c7355;
+      --red:     #8b1a1a;
+      --border:  #c9b99a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Lora', serif;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--ink);
+      padding: 28px 48px;
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      border-bottom: 4px solid var(--gold);
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      color: var(--cream);
+      letter-spacing: 1px;
+    }
+    header h1 span { color: var(--gold-lt); }
+    .header-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--gold);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 56px 32px;
+    }
+
+    /* ── SEARCH FORM ── */
+    .search-block {
+      display: flex;
+      gap: 0;
+      margin-bottom: 56px;
+      border: 2px solid var(--ink);
+    }
+    .word-input {
+      flex: 1;
+      border: none;
+      background: #fff;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      padding: 16px 22px;
+      color: var(--ink);
+      outline: none;
+    }
+    .word-input::placeholder { color: #bbb; font-style: italic; }
+    .search-btn {
+      background: var(--ink);
+      color: var(--gold-lt);
+      border: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 3px;
+      padding: 0 30px;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-transform: uppercase;
+    }
+    .search-btn:hover { background: var(--brown); }
+
+    /* ── ERROR ── */
+    .error-box {
+      border-left: 4px solid var(--red);
+      background: #fdf0f0;
+      padding: 14px 20px;
+      font-size: 0.9rem;
+      color: var(--red);
+      margin-bottom: 32px;
+      font-style: italic;
+    }
+
+    /* ── RESULT CARD ── */
+    .dict-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      box-shadow: 4px 4px 0 var(--parchment), 5px 5px 0 var(--border);
+    }
+
+    /* Word Header */
+    .word-header {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 28px 36px;
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .word-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      color: #fff;
+    }
+    .word-pos {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      color: var(--gold-lt);
+      font-size: 1rem;
+    }
+    .word-phonetic {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: #aaa;
+      margin-left: auto;
+    }
+
+    /* Definition */
+    .dict-section {
+      padding: 28px 36px;
+      border-bottom: 1px solid var(--parchment);
+    }
+    .dict-section:last-child { border-bottom: none; }
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .definition-text {
+      font-size: 1.08rem;
+      line-height: 1.85;
+      color: var(--ink);
+    }
+
+    /* Tags (synonyms / antonyms) */
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      padding: 5px 14px;
+      border: 1px solid var(--border);
+      color: var(--brown);
+      background: var(--parchment);
+      cursor: default;
+      transition: background 0.15s;
+    }
+    .tag:hover { background: var(--gold-lt); color: #fff; border-color: var(--gold-lt); }
+    .tag.antonym { border-color: #e0c0c0; color: var(--red); background: #fdf5f5; }
+    .tag.antonym:hover { background: var(--red); color: #fff; border-color: var(--red); }
+
+    /* Examples */
+    .example-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .example-list li {
+      padding-left: 20px;
+      border-left: 3px solid var(--gold);
+      font-style: italic;
+      font-size: 0.97rem;
+      color: #444;
+      line-height: 1.7;
+    }
+    .example-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-style: normal;
+      font-size: 0.6rem;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 2px;
+      letter-spacing: 2px;
+    }
+
+    /* Origin */
+    .origin-text {
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 32px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 3px;
+    }
+
+    @media (max-width: 600px) {
+      header { padding: 20px 24px; flex-direction: column; gap: 4px; }
+      main { padding: 32px 16px; }
+      .word-header { padding: 20px 20px; }
+      .dict-section { padding: 20px 20px; }
+      .word-title { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Dictionary<span>+</span></h1>
+  <span class="header-sub">Task 04 · Gemini AI</span>
+</header>
+
+<main>
+
+  <form method="POST">
+    {% csrf_token %}
+    <div class="search-block">
+      <input
+        type="text"
+        name="{{ form.word.html_name }}"
+        class="word-input"
+        placeholder="Look up any word…"
+        value="{{ word_searched|default:'' }}"
+        autocomplete="off"
+        autofocus
+      />
+      <button type="submit" class="search-btn">Look up →</button>
+    </div>
+  </form>
+
+  {% if error %}
+    <div class="error-box">{{ error }}</div>
+  {% endif %}
+
+  {% if result %}
+  <div class="dict-card">
+
+    <!-- Word Header -->
+    <div class="word-header">
+      <span class="word-title">{{ result.word }}</span>
+      <span class="word-pos">{{ result.part_of_speech }}</span>
+      <span class="word-phonetic">{{ result.phonetic }}</span>
+    </div>
+
+    <!-- Definition -->
+    <div class="dict-section">
+      <div class="section-label">Definition</div>
+      <p class="definition-text">{{ result.definition }}</p>
+    </div>
+
+    <!-- Synonyms -->
+    <div class="dict-section">
+      <div class="section-label">Synonyms</div>
+      <div class="tag-row">
+        {% for syn in result.synonyms %}
+          <span class="tag">{{ syn }}</span>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Antonyms -->
+    {% if result.antonyms %}
+    <div class="dict-section">
+      <div class="section-label">Antonyms</div>
+      <div class="tag-row">
+        {% for ant in result.antonyms %}
+          <span class="tag antonym">{{ ant }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Example Sentences -->
+    <div class="dict-section">
+      <div class="section-label">Example Sentences</div>
+      <ul class="example-list">
+        {% for ex in result.examples %}
+        <li>
+          <span class="example-num">0{{ forloop.counter }}</span>
+          {{ ex }}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!-- Origin -->
+    {% if result.origin %}
+    <div class="dict-section">
+      <div class="section-label">Origin</div>
+      <p class="origin-text">{{ result.origin }}</p>
+    </div>
+    {% endif %}
+
+  </div>
+  {% endif %}
+
+</main>
+
+<footer>Dictionary+ · Django + Gemini 1.5 Flash · Task 04</footer>
+
+</body>
+</html>
