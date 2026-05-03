@@ -1,4 +1,4 @@
-Great choice! Adding the **SEO Meta Data Generator** as the next project really rounds out Level 1 by introducing a practical tool for web developers.
+
 
 I have updated your README to mark the **Joke Generator** and **Grammar Fixer** as complete and added the **SEO Meta Data Generator** to the "Upcoming" slot with a brief spotlight.
 
