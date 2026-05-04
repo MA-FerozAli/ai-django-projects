@@ -18,10 +18,14 @@ A collection of AI-powered web apps built with Django + Gemini API.
 | 2 | Dictionary+ | ✅ Done |
 | 3 | AI Joke & Quote Generator | ✅ Done |
 | 4 | Grammar & Tone Fixer | ✅ Done |
-| 5 | SEO Meta Data Generator | ⏳ Upcoming |
+| 5 | SEO Meta Data Generator | ✅ Done |
 
 ---
-
+## Level 2 - State & Memory
+| # | Project | Status |
+|---|---------|--------|
+| 1 | AI ChatBot |  ⏳ Upcomming |
+| 2 |Blog Architect | ⏳ Upcomming |
 ## 📖 Project Spotlights
 
 ### **Dictionary+**
@@ -34,6 +38,8 @@ Uses strict JSON prompting to return structured linguistic data including phonet
 ### **SEO Meta Data Generator (Next Up!)**
 This tool will take a URL or a block of content and automatically generate optimized **Meta Titles**, **Descriptions**, and **Keywords** to improve search engine rankings.
 
+### AI TEXT SUMMARIZER
+takes a long input of text return consice summary
 ---
 
 ## ⚙️ Tech Stack

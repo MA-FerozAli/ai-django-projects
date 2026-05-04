@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'SEO_Metadata_generator',
     'dictionary',
     'grammerToneFixer',
     'summarizer',

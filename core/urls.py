@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path,include
 
 urlpatterns = [
+    path('seo/',include('SEO_Metadata_generator.urls')),
     path('dictionary/',include('dictionary.urls')),
     path('grammer/',include('grammerToneFixer.urls')),
     path('summarizer/',include('summarizer.urls')),
