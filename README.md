@@ -40,6 +40,8 @@ This tool will take a URL or a block of content and automatically generate optim
 
 ### AI TEXT SUMMARIZER
 takes a long input of text return consice summary
+
+# Started Implementing the AI Chatbot
 ---
 
 ## ⚙️ Tech Stack
