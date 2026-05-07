@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'AI_Chatbot',
     'SEO_Metadata_generator',
     'dictionary',
     'grammerToneFixer',
