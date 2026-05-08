@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Architect | Outline</title>
+    <style>
+        /* Modern Dark Theme Variables */
+        :root {
+            --primary: #6366f1;
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 40px auto;
+        }
+
+        /* Content Card */
+        .content-card {
+            background: var(--card);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+
+        .label {
+            display: inline-block;
+            color: var(--primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 2rem;
+            background: linear-gradient(45deg, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 25px;
+        }
+
+        .outline-text {
+            white-space: pre-wrap;
+            color: #cbd5e1;
+            background: rgba(15, 23, 42, 0.5);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            font-size: 1rem;
+        }
+
+        /* Button Styling */
+        .action-area {
+            text-align: center;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
+        }
+
+        button:hover {
+            background-color: #4f46e5;
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.4);
+        }
+
+        button:disabled {
+            background-color: #334155;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover {
+            color: var(--text);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        {% if blog %}
+        <div class="content-card">
+            <span class="label">Project Topic</span>
+            <h1>{{ blog.topic }}</h1>
+
+            <span class="label">Approved Outline</span>
+            <div class="outline-text">{{ blog.outline }}</div>
+        </div>
+        {% endif %}
+
+        <div class="action-area">
+            <form id="genForm" action="{% url 'full_post' pk %}" method="post">
+                {% csrf_token %}
+                <button type="submit" id="genBtn">Generate Full Blog Post</button>
+            </form>
+            <a href="/" class="back-link">← Start Over</a>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('genForm');
+        const btn = document.getElementById('genBtn');
+
+        form.onsubmit = function() {
+            btn.innerHTML = "AI is Writing...";
+            btn.disabled = true;
+            btn.style.opacity = "0.8";
+        };
+    </script>
+
+</body>
+</html>
