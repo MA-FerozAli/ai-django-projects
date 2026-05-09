@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path,include
 
 urlpatterns = [
+    path('ResumeMatcher',include('Resume_Matcher.urls')),
     path('Blog/',include('BlogArchitect.urls')),
     path('chatbot/',include('AI_Chatbot.urls')),
     path('seo/',include('SEO_Metadata_generator.urls')),

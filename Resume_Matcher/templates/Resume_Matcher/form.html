@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESUME MATCHER</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        form {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Styling the Django form fields */
+        form p {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #475569;
+        }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 8px;
+            box-sizing: border-box; /* Crucial for padding */
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        button {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* Result Section Styling */
+        .result-container {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f0fdf4;
+            border-left: 5px solid #22c55e;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 600px;
+            white-space: pre-wrap; /* Keeps formatting of the AI response */
+        }
+
+        .error-container {
+            margin-top: 30px;
+            padding: 20px;
+            background: #fef2f2;
+            border-left: 5px solid #ef4444;
+            color: #991b1b;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Resume Matcher</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Check Compatibility</button>
+    </form>
+
+    {% if result %}
+    <div class="result-container">
+        <strong>Analysis Result:</strong><br>
+        {{ result|linebreaks }}
+    </div>
+    {% endif %}
+
+    {% if error %}
+    <div class="error-container">
+        <strong>Error:</strong> {{ error }}
+    </div>
+    {% endif %}
+</body>
+</html>
