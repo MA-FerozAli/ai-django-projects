@@ -41,9 +41,27 @@ This tool will take a URL or a block of content and automatically generate optim
 ### AI TEXT SUMMARIZER
 takes a long input of text return consice summary
 
-# Started Implementing the AI Chatbot
+#🤖 AI Chatbot Implementation
+Conversational Interface: Developed a responsive chatbot interface capable of processing natural language queries and providing context-aware responses.
 
-## started implementing of Blog Architect 
+LLM Integration: Connected the backend to advanced Language Models to handle complex user interactions and technical assistance.
+
+Real-time Streaming: (If applicable) Implemented asynchronous message handling to provide a seamless, "typing" experience for users.
+
+🏗️ Blog Architect Development
+Structure & Design: Initiated the core framework for Blog Architect, a tool designed to automate content creation and SEO-friendly blog structuring.
+
+Content Intelligence: Building features to help users generate high-quality outlines, meta-descriptions, and keyword-optimized articles.
+
+Modular Architecture: Designed a scalable codebase that allows the AI Chatbot and Resume Matcher to function as integrated plugins within the Blog Architect ecosystem.
+# 📄 Resume Matcher
+
+An intelligent tool designed to bridge the gap between job seekers and their dream roles. 
+
+## 🚀 Features
+* **Real-time Analysis:** Get instant feedback on how well a resume fits a specific JD.
+* **Skill Gap Identification:** Highlights missing keywords and technical skills.
+* **Modern UI:** Clean, responsive interface built with Django templates and custom CSS.
 ---
 
 ## ⚙️ Tech Stack
