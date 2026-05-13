@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart FAQ Manager</title>
+</head>
+<body>
+    <h1>List ALL Facts</h1>
+    {% for fact in facts %}
+    <p> {{ fact }} </p>
+    {% empty %}
+    <p>No Facts are added yet.</p>
+    {% endfor %}    
+</body>
+</html>
