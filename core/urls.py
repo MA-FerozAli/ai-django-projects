@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path,include
 
 urlpatterns = [
+    path('CodeExplainer',include('code_explainer.urls')),
+    path('FAQ/',include('smart_FAQ_manager.urls')),
     path('ResumeMatcher',include('Resume_Matcher.urls')),
     path('Blog/',include('BlogArchitect.urls')),
     path('chatbot/',include('AI_Chatbot.urls')),
