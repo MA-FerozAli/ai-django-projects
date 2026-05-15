@@ -34,7 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'pdf_TL_DR_bot',
+
     'code_explainer',
     'smart_FAQ_manager',
     'Resume_Matcher',
